@@ -58,14 +58,18 @@ namespace HelloMVC.Controllers
         {
             return View();
         }
+        [HttpPost] //used to get value from input
+    public ActionResult AddCustomer(Customer customer)
+        {
+            customer.Id = Guid.NewGuid().ToString();
+            customers.Add(customer);
+            SaveCache();
+
+            return RedirectToAction("CustomerList");
+        }
         public ActionResult CustomerList()
         {
-            List<Customer> customers = new List<Customer>();
-
-            customers.Add(new Customer() { Name = "Fred", Telephone = "12345" });
-            customers.Add(new Customer() { Name = "Barney", Telephone = "098765" });
-
-            return View(customers);
+         return View(customers);
         }
     }
 }

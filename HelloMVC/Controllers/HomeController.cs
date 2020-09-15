@@ -131,6 +131,15 @@ namespace HelloMVC.Controllers
                 return RedirectToAction("CustomerList");
             }
         }
+        public PartialViewResult Basket()
+        {
+            BasketViewModel model = new BasketViewModel();
+
+            model.BasketCount = 5;
+            model.BasketTotal = "$100";
+
+            return PartialView(model);
+        }
         public ActionResult CustomerList()
         {
          return View(customers);

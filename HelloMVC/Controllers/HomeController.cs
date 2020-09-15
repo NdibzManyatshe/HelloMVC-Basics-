@@ -63,6 +63,10 @@ namespace HelloMVC.Controllers
         [HttpPost] //used to get value from input
     public ActionResult AddCustomer(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(customer);
+            }
             customer.Id = Guid.NewGuid().ToString();
             customers.Add(customer);
             SaveCache();
